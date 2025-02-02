@@ -1,0 +1,33 @@
+img {
+  height: 150px;
+  width: auto;
+}
+
+.flexbox {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flexbox-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.productContainer {
+  background-color: gainsboro;
+  width: 25%;
+  padding: 10px;
+}
+
+.addToCart {
+  width: 100%;
+  justify-content: center;
+}
+
+.addToCart span {
+  margin-left: 10px;
+  margin-right: 10px;
+}
