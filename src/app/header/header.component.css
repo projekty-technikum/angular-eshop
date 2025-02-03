@@ -27,13 +27,13 @@
   padding-right: 30px;
 }
 .eshop-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding-top: 2vh;
   padding: 1vh 1vh;
   color: #36454f;
-  font-family: "Montserrat", sans-serif;
-  font-weight: normal;
-  font-size: 14px;
-  width: 70%;
+  width: 40%;
   text-align: center;
 }
 .eshop--bottom--bar {
@@ -53,13 +53,6 @@ a {
   text-decoration: none;
   padding: 0 10px;
   color: #28282b;
-}
-.eshop--search--btn {
-  width: 33px;
-  height: 33px;
-  border: none;
-  background-color: #efefef;
-  margin-left: -5px;
 }
 
 .btn {
