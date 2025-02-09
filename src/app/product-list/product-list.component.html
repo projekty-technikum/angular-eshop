@@ -1,33 +1,28 @@
-<div class="productContainer flexbox">
-  <img [src]="product.pImage" alt="iPhone 15" />
-  <div class="productDetails flexbox-column">
-    <p>Name: {{ product.name }}</p>
-    <p>Price: {{ "$" + product.price }}</p>
-    <p>Color: {{ product.color }}</p>
-    <p>
-      Discounted Price:
-      {{ getDiscountedPrice().toFixed(2) }}
-    </p>
-    <p>
-      {{
-        product.inStock > 0
-          ? "Only " + product.inStock + " items left"
-          : "Not in Stock"
-      }}
-    </p>
-    <div class="flexbox">
+<app-search></app-search>
+<div class="productList flexbox">
+  <div class="productContainer flexbox" *ngFor="let product of products">
+    <img [src]="product.pImage" [alt]="product.name" />
+    <div class="productDetails flexbox-column">
+      <p>{{ product.name }}</p>
+      <p>Price: {{ "$" + product.price }}</p>
+      <p>Color: {{ product.color }}</p>
+      <p>
+        Discounted Price:
+        {{ getDiscountedPrice(product).toFixed(2) }}
+      </p>
+      <p>
+        {{
+          product.inStock > 0
+            ? "Only " + product.inStock + " items left"
+            : "Not in Stock"
+        }}
+      </p>
       <button [disabled]="!(product.inStock > 0)">Buy Now</button>
-      <!-- Disabled, Hidden, Checked -->
-
-      <input (input)="onNameChange($event)" />
-      <!-- <input [value]="name" /> -->
-      <!-- <input bind-value="name" /> -->
-    </div>
-    <p>name={{ name }}</p>
-    <div class="addToCart flexbox">
-      <button (click)="decrementCart()">-</button>
-      <span>{{ addToCart }}</span>
-      <button (click)="incrementCart()">+</button>
+      <div class="addToCart flexbox">
+        <button (click)="decrementCart(product)">-</button>
+        <span>{{ product.cartCount }}</span>
+        <button (click)="incrementCart(product)">+</button>
+      </div>
     </div>
   </div>
 </div>

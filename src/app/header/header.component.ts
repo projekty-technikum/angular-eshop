@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  menuItems: string[] = ['Home', 'Products', 'About', 'Contact'];
+  topBarItems: string[] = [
+    'Help',
+    'Exchange & Returns',
+    'Order Tracker',
+    'SignUp / Login',
+  ];
+}
