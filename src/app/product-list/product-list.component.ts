@@ -8,11 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent {
+  cartCount: number = 0;
+  inCart: number = 0;
   name: string = 'Kacper';
   product = {
     name: 'iPhone',
     price: 799,
-    color: 'Black',
+    color: 'Pink',
     discount: 8.5,
     inStock: 5,
     pImage: 'iphone15.jpg',
@@ -24,7 +26,15 @@ export class ProductListComponent {
     );
   }
 
-  onNameChange(event: any) {
-    console.log(event.target.value);
+  incrementCart() {
+    if (this.cartCount < this.product.inStock) {
+      this.cartCount++;
+    }
+  }
+
+  decrementCart() {
+    if (this.cartCount > 0) {
+      this.cartCount--;
+    }
   }
 }
