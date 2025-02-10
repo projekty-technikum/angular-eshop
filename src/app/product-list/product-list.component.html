@@ -7,7 +7,7 @@
       <p>Color: {{ product.color }}</p>
       <p>
         Discounted Price:
-        {{ getDiscountedPrice().toFixed(2) }}
+        {{ "$" + getDiscountedPrice().toFixed(2) }}
       </p>
       <p>
         {{

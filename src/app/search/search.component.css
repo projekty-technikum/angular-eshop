@@ -1,0 +1,60 @@
+.searchProduct {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.searchProductInput {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: #007bff;
+  }
+}
+
+.buttonSearch {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.searchResultFor {
+  margin-top: 15px;
+  color: #666;
+  font-size: 14px;
+
+  p {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchProduct {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .buttonSearch {
+    width: 100%;
+  }
+}

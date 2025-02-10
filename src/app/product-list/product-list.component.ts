@@ -12,10 +12,10 @@ export class ProductListComponent {
   inCart: number = 0;
   name: string = 'Kacper';
   product = {
-    name: 'iPhone',
-    price: 799,
+    name: 'iPhone 15',
+    price: 999,
     color: 'Pink',
-    discount: 8.5,
+    discount: 10,
     inStock: 5,
     pImage: 'iphone15.jpg',
   };
