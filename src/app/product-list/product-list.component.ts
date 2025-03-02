@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent {
-  products: any[] = [
+products: any[] = [
     {
       name: 'iPhone 15',
       price: 999,
