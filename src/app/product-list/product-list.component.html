@@ -1,5 +1,6 @@
+<app-search></app-search>
 <div class="productList flexbox">
-  <div class="productContainer flexbox">
+  <div class="productContainer flexbox" *ngFor="let product of products">
     <img [src]="product.pImage" [alt]="product.name" />
     <div class="productDetails flexbox-column">
       <p>{{ product.name }}</p>
@@ -7,7 +8,7 @@
       <p>Color: {{ product.color }}</p>
       <p>
         Discounted Price:
-        {{ "$" + getDiscountedPrice().toFixed(2) }}
+        {{ getDiscountedPrice(product).toFixed(2) }}
       </p>
       <p>
         {{
@@ -18,9 +19,9 @@
       </p>
       <button [disabled]="!(product.inStock > 0)">Buy Now</button>
       <div class="addToCart flexbox">
-        <button (click)="decrementCart()">-</button>
-        <span>{{ cartCount }}</span>
-        <button (click)="incrementCart()">+</button>
+        <button (click)="decrementCart(product)">-</button>
+        <span>{{ product.cartCount }}</span>
+        <button (click)="incrementCart(product)">+</button>
       </div>
     </div>
   </div>
