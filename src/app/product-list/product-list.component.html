@@ -1,6 +1,23 @@
 <app-search></app-search>
 <div class="productList flexbox">
-  <div class="productContainer flexbox" *ngFor="let product of products">
+  <div
+    class="productContainer flexbox"
+    *ngFor="let product of products"
+    [ngStyle]="{
+      'background-color': product.inStock > 0 ? '#e8f5e9' : '#ffebee',
+      border: '2px solid',
+      'border-color':
+        product.inStock > 10
+          ? '#1976d2'
+          : product.inStock > 5
+          ? '#f57c00'
+          : '#d32f2f',
+      transition: 'all 0.3s ease',
+      transform: product.isHovered ? 'scale(1.02)' : 'scale(1)'
+    }"
+    (mouseenter)="product.isHovered = true"
+    (mouseleave)="product.isHovered = false"
+  >
     <img [src]="product.pImage" [alt]="product.name" />
     <div class="productDetails flexbox-column">
       <p>{{ product.name }}</p>

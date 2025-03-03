@@ -7,13 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent {
-products: any[] = [
+  isHovered = false;
+  products: any[] = [
     {
       name: 'iPhone 15',
       price: 999,
       color: 'Pink',
       pImage: 'iphone15.jpg',
-      inStock: 5,
+      inStock: 12,
       discount: 10,
       cartCount: 0,
     },
@@ -22,7 +23,7 @@ products: any[] = [
       price: 799,
       color: 'Purple',
       pImage: 'iphone14.jpg',
-      inStock: 3,
+      inStock: 7,
       discount: 15,
       cartCount: 0,
     },
