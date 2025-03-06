@@ -1,6 +1,14 @@
 <div class="searchProduct">
   <input class="searchProductInput" [(ngModel)]="searchText" />
-  <button class="buttonSearch">Search</button>
+  <button
+    [ngClass]="{
+      buttonSearch: searchText,
+      'buttonSearch-disabled': !searchText
+    }"
+    class="buttonSearch"
+  >
+    Search
+  </button>
 </div>
 <div class="searchResultFor">
   <p>Search result for: {{ searchText }}</p>

@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { SearchComponent } from './product-list/search/search.component';
 import { FormsModule } from '@angular/forms';
+import { ProductComponent } from './product-list/product/product.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     ProductListComponent,
     SearchComponent,
+    ProductComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
