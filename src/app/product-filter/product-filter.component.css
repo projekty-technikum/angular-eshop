@@ -1,0 +1,39 @@
+.filter-container {
+  margin: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+input[type="radio"] {
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+  color: #555;
+  font-size: 14px;
+}
+
+input[type="radio"]:checked + label {
+  color: #007bff;
+  font-weight: 500;
+}
