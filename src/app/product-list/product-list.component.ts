@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class ProductListComponent {
   isHovered = false;
   selectedFilterOption: string = 'all';
+  searchQuery: string = '';
   products: any[] = [
     {
       name: 'iPhone 15',
@@ -83,15 +84,28 @@ export class ProductListComponent {
   ];
 
   get filteredProducts() {
-    if (this.selectedFilterOption === 'all') {
-      return this.products;
+    let filtered = this.products;
+
+    if (this.selectedFilterOption !== 'all') {
+      filtered = filtered.filter(
+        (product) => product.category === this.selectedFilterOption
+      );
     }
-    return this.products.filter(
-      (product) => product.category === this.selectedFilterOption
-    );
+
+    if (this.searchQuery) {
+      filtered = filtered.filter((product) =>
+        product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
+
+    return filtered;
   }
 
   onFilterChange(category: string) {
     this.selectedFilterOption = category;
+  }
+
+  onSearchChange(query: string) {
+    this.searchQuery = query;
   }
 }
