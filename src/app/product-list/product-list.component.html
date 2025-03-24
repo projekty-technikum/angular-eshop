@@ -3,5 +3,8 @@
   (filterChanged)="onFilterChange($event)"
 ></app-product-filter>
 <div class="productList flexbox">
-  <app-product *ngFor="let prod of products" [product]="prod"></app-product>
+  <app-product
+    *ngFor="let prod of filteredProducts"
+    [product]="prod"
+  ></app-product>
 </div>

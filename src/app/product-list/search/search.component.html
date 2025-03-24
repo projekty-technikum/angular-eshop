@@ -1,15 +1,21 @@
 <div class="searchProduct">
-  <input class="searchProductInput" [(ngModel)]="searchText" />
+  <input
+    class="searchProductInput"
+    [(ngModel)]="searchText"
+    (keyup.enter)="handleSearch()"
+  />
   <button
     [ngClass]="{
       buttonSearch: searchText,
       'buttonSearch-disabled': !searchText
     }"
     class="buttonSearch"
+    (click)="handleSearch()"
+    [disabled]="!searchText"
   >
     Search
   </button>
 </div>
-<div class="searchResultFor">
-  <p>Search result for: {{ searchText }}</p>
+<div class="searchResultFor" *ngIf="currentSearch">
+  <p>Search result for: {{ currentSearch }}</p>
 </div>
