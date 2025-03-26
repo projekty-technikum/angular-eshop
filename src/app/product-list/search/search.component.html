@@ -3,6 +3,7 @@
     class="searchProductInput"
     [(ngModel)]="searchText"
     (keyup.enter)="handleSearch()"
+    placeholder="Search products..."
   />
   <button
     [ngClass]="{
@@ -14,6 +15,9 @@
     [disabled]="!searchText"
   >
     Search
+  </button>
+  <button *ngIf="currentSearch" class="buttonClear" (click)="clearSearch()">
+    Clear
   </button>
 </div>
 <div class="searchResultFor" *ngIf="currentSearch">

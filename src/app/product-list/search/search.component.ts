@@ -18,4 +18,10 @@ export class SearchComponent {
       this.searchChanged.emit(this.searchText);
     }
   }
+
+  clearSearch() {
+    this.searchText = '';
+    this.currentSearch = '';
+    this.searchChanged.emit('');
+  }
 }
