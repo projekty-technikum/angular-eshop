@@ -10,6 +10,7 @@ import { Component, Input } from '@angular/core';
 export class ProductComponent {
   @Input()
   product: any;
+  showDetails: boolean = false;
 
   getDiscountedPrice(product: any) {
     return product.price - (product.price * product.discount) / 100;
@@ -25,5 +26,9 @@ export class ProductComponent {
     if (product.cartCount > 0) {
       product.cartCount--;
     }
+  }
+
+  toggleDetails() {
+    this.showDetails = !this.showDetails;
   }
 }

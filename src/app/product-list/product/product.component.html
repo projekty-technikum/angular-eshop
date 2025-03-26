@@ -9,6 +9,7 @@
   }"
   (mouseenter)="product.isHovered = true"
   (mouseleave)="product.isHovered = false"
+  (click)="toggleDetails()"
 >
   <img [src]="product.pImage" [alt]="product.name" />
   <div class="productDetails flexbox-column">
@@ -34,3 +35,9 @@
     </div>
   </div>
 </div>
+
+<app-product-details
+  [product]="product"
+  [showDetails]="showDetails"
+  (closeModal)="toggleDetails()"
+></app-product-details>
