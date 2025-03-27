@@ -9,9 +9,8 @@
   }"
   (mouseenter)="product.isHovered = true"
   (mouseleave)="product.isHovered = false"
-  (click)="toggleDetails()"
 >
-  <img [src]="product.pImage" [alt]="product.name" />
+  <img [src]="product.pImage" [alt]="product.name" (click)="toggleDetails()" />
   <div class="productDetails flexbox-column">
     <p>{{ product.name }}</p>
     <p>Price: {{ "$" + product.price }}</p>
