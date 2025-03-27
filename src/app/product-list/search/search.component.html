@@ -15,6 +15,9 @@
   >
     Search
   </button>
+  <button *ngIf="currentSearch" class="buttonClear" (click)="clearSearch()">
+    Clear
+  </button>
 </div>
 <div class="searchResultFor" *ngIf="currentSearch">
   <p>Search result for: {{ currentSearch }}</p>
