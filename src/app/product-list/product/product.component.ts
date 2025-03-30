@@ -40,4 +40,6 @@ export class ProductComponent {
     if (event) {
       event.stopPropagation();
     }
+    this.showDetails = !this.showDetails;
+  }
 }
