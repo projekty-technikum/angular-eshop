@@ -16,19 +16,31 @@ export class ProductComponent {
     return product.price - (product.price * product.discount) / 100;
   }
 
-  incrementCart(product: any) {
+  incrementCart(product: any, event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
+
     if (product.cartCount < product.inStock) {
       product.cartCount++;
     }
   }
 
-  decrementCart(product: any) {
+  decrementCart(product: any, event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
+
     if (product.cartCount > 0) {
       product.cartCount--;
     }
   }
 
-  toggleDetails() {
+  toggleDetails(event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
+
     this.showDetails = !this.showDetails;
   }
 }

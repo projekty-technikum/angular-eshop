@@ -9,7 +9,6 @@
   }"
   (mouseenter)="product.isHovered = true"
   (mouseleave)="product.isHovered = false"
-  (click)="toggleDetails()"
 >
   <img [src]="product.pImage" [alt]="product.name" />
   <div class="productDetails flexbox-column">
@@ -27,11 +26,21 @@
           : "Not in Stock"
       }}
     </p>
-    <button [disabled]="!(product.inStock > 0)">Buy Now</button>
+    <div class="product-buttons">
+      <button [disabled]="!(product.inStock > 0)" class="buy-button">
+        Buy Now
+      </button>
+      <button (click)="toggleDetails($event)" class="details-button">
+        <span>Details</span>
+        <svg viewBox="0 0 24 24" width="16" height="16">
+          <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14l-6-6z"></path>
+        </svg>
+      </button>
+    </div>
     <div class="addToCart flexbox">
-      <button (click)="decrementCart(product)">-</button>
+      <button (click)="decrementCart(product, $event)">-</button>
       <span>{{ product.cartCount }}</span>
-      <button (click)="incrementCart(product)">+</button>
+      <button (click)="incrementCart(product, $event)">+</button>
     </div>
   </div>
 </div>

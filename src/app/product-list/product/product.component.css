@@ -4,7 +4,8 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  max-width: 500px;
+  width: 450px;
+  height: 350px;
   /* Change to use flex-basis instead of width */
   flex: 1 1 400px;
   min-width: 0;
@@ -60,6 +61,35 @@
   }
 }
 
+.product-buttons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.buy-button {
+  flex: 2;
+}
+
+.details-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: #6c757d;
+
+  svg {
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+    fill: white;
+  }
+
+  &:hover svg {
+    transform: rotate(180deg);
+  }
+}
+
 .addToCart {
   margin-top: 15px;
 
@@ -107,5 +137,9 @@
 
   .productDetails {
     width: 100%;
+  }
+
+  .product-buttons {
+    flex-direction: column;
   }
 }
