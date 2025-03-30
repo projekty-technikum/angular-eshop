@@ -37,6 +37,16 @@
         </svg>
       </button>
     </div>
+
+    <!-- New Compare Button -->
+    <button
+      (click)="compareProduct($event)"
+      class="compare-button"
+      [ngClass]="{ 'is-active': isInCompareList }"
+    >
+      {{ isInCompareList ? "Remove from Compare" : "Add to Compare" }}
+    </button>
+
     <div class="addToCart flexbox">
       <button (click)="decrementCart(product, $event)">-</button>
       <span>{{ product.cartCount }}</span>

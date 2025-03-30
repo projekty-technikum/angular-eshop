@@ -2,9 +2,151 @@
 <app-product-filter
   (filterChanged)="onFilterChange($event)"
 ></app-product-filter>
+
+<!-- Comparison controls -->
+<div
+  *ngIf="!compareMode"
+  class="comparison-controls"
+  style="margin: 15px 0; text-align: center"
+>
+  <button
+    [disabled]="productsToCompare.length < 2"
+    (click)="startComparison()"
+    style="
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    "
+  >
+    Compare Selected ({{ productsToCompare.length }})
+  </button>
+  <button
+    *ngIf="productsToCompare.length > 0"
+    (click)="cancelComparison()"
+    style="
+      padding: 8px 16px;
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    "
+  >
+    Clear Selection
+  </button>
+  <p
+    *ngIf="productsToCompare.length > 0"
+    style="margin-top: 10px; font-size: 14px; color: #555"
+  >
+    Select up to 3 products to compare
+  </p>
+</div>
+
+<!-- Comparison view -->
+<div
+  *ngIf="compareMode"
+  class="comparison-table"
+  style="
+    margin: 20px auto;
+    max-width: 900px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  "
+>
+  <h3 style="text-align: center; margin-bottom: 20px">Product Comparison</h3>
+
+  <table style="width: 100%; border-collapse: collapse">
+    <tr>
+      <th
+        style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left"
+      >
+        Feature
+      </th>
+      <th
+        *ngFor="let product of getComparisonData()"
+        style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center"
+      >
+        {{ product.name }}
+      </th>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border-bottom: 1px solid #ddd">Price</td>
+      <td
+        *ngFor="let product of getComparisonData()"
+        style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center"
+      >
+        ${{ product.price }}
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border-bottom: 1px solid #ddd">
+        Discounted Price
+      </td>
+      <td
+        *ngFor="let product of getComparisonData()"
+        style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center"
+      >
+        ${{ product.discountedPrice.toFixed(2) }}
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border-bottom: 1px solid #ddd">Color</td>
+      <td
+        *ngFor="let product of getComparisonData()"
+        style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center"
+      >
+        {{ product.color }}
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border-bottom: 1px solid #ddd">Stock</td>
+      <td
+        *ngFor="let product of getComparisonData()"
+        style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center"
+      >
+        {{ product.inStock }}
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 10px">Category</td>
+      <td
+        *ngFor="let product of getComparisonData()"
+        style="padding: 10px; text-align: center"
+      >
+        {{ product.category }}
+      </td>
+    </tr>
+  </table>
+
+  <div style="text-align: center; margin-top: 20px">
+    <button
+      (click)="cancelComparison()"
+      style="
+        padding: 8px 16px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      "
+    >
+      Close Comparison
+    </button>
+  </div>
+</div>
+
+<!-- Product List -->
 <div class="productList flexbox">
   <app-product
     *ngFor="let prod of filteredProducts"
     [product]="prod"
+    [isInCompareList]="isProductInCompareList(prod)"
+    (addToCompare)="handleCompareProduct($event)"
   ></app-product>
 </div>
