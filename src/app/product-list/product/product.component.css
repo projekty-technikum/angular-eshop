@@ -4,11 +4,11 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 450px;
-  height: 350px;
+  min-height: 350px;
+  max-height: 450px;
   /* Change to use flex-basis instead of width */
   flex: 1 1 400px;
-  min-width: 0;
+  min-width: 500px;
 
   &.flexbox {
     display: flex;
