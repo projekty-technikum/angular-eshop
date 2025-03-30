@@ -3,13 +3,14 @@
   (filterChanged)="onFilterChange($event)"
 ></app-product-filter>
 
-<!-- Comparison controls -->
+<!-- Comparison controls with #compareButton reference -->
 <div
   *ngIf="!compareMode"
   class="comparison-controls"
   style="margin: 15px 0; text-align: center"
 >
   <button
+    #compareButton
     [disabled]="productsToCompare.length < 2"
     (click)="startComparison()"
     style="
@@ -141,10 +142,11 @@
   </div>
 </div>
 
-<!-- Product List -->
+<!-- Product List with #productItem references -->
 <div class="productList flexbox">
   <app-product
     *ngFor="let prod of filteredProducts"
+    #productItem
     [product]="prod"
     [isInCompareList]="isProductInCompareList(prod)"
     (addToCompare)="handleCompareProduct($event)"

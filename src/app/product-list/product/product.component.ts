@@ -1,4 +1,10 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ElementRef,
+} from '@angular/core';
 
 @Component({
   selector: 'app-product',
@@ -12,6 +18,9 @@ export class ProductComponent {
   @Output() addToCompare = new EventEmitter<any>();
 
   showDetails: boolean = false;
+
+  // Add reference to element without using constructor
+  elementRef: ElementRef | undefined;
 
   getDiscountedPrice(product: any) {
     return product.price - (product.price * product.discount) / 100;

@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ViewChildren,
+  QueryList,
+  ElementRef,
+} from '@angular/core';
+import { ProductComponent } from './product/product.component';
 
 @Component({
   selector: 'product-list',
@@ -14,6 +21,12 @@ export class ProductListComponent {
   // Track selected products for comparison
   productsToCompare: any[] = [];
   compareMode: boolean = false;
+
+  // Add ViewChild for the compare button
+  @ViewChild('compareButton') compareButton!: ElementRef;
+
+  // Add ViewChildren for all products
+  @ViewChildren('productItem') productItems!: QueryList<ProductComponent>;
 
   products: any[] = [
     {
@@ -120,15 +133,18 @@ export class ProductListComponent {
     );
 
     if (index !== -1) {
-      // Product already in comparison list, remove it
       this.productsToCompare.splice(index, 1);
     } else {
-      // Add to comparison list, limit to 3
       if (this.productsToCompare.length < 3) {
         this.productsToCompare.push(product);
       } else {
         alert('You can compare maximum 3 products at once');
       }
+    }
+
+    // Use ViewChild to update button text with count
+    if (this.compareButton) {
+      this.compareButton.nativeElement.textContent = `Compare Selected (${this.productsToCompare.length})`;
     }
   }
 
@@ -143,11 +159,50 @@ export class ProductListComponent {
     }
 
     this.compareMode = true;
+
+    // Use ViewChildren to highlight products for comparison
+    this.highlightComparedProducts();
+  }
+
+  // A simple method to highlight compared products using ViewChildren
+  highlightComparedProducts() {
+    if (this.productItems) {
+      this.productItems.forEach((item) => {
+        const isInCompare = this.isProductInCompareList(item.product);
+        const element = item['elementRef']?.nativeElement;
+
+        if (element) {
+          if (isInCompare) {
+            element.style.transform = 'scale(1.05)';
+            element.style.boxShadow = '0 0 15px rgba(0, 123, 255, 0.7)';
+          } else {
+            element.style.transform = 'scale(1)';
+            element.style.boxShadow = 'none';
+          }
+        }
+      });
+    }
   }
 
   cancelComparison() {
     this.compareMode = false;
     this.productsToCompare = [];
+
+    // Reset highlights when cancelling comparison
+    if (this.productItems) {
+      this.productItems.forEach((item) => {
+        const element = item['elementRef']?.nativeElement;
+        if (element) {
+          element.style.transform = 'scale(1)';
+          element.style.boxShadow = 'none';
+        }
+      });
+    }
+
+    // Use ViewChild to update button
+    if (this.compareButton) {
+      this.compareButton.nativeElement.textContent = 'Compare Selected (0)';
+    }
   }
 
   getComparisonData() {
