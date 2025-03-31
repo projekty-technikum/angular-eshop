@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
+import { ProductComponent } from './product/product.component';
 
 @Component({
   selector: 'product-list',
@@ -13,6 +20,10 @@ export class ProductListComponent {
 
   productsToCompare: any[] = [];
   compareMode: boolean = false;
+
+  @ViewChild('compareButton') compareButton!: ElementRef;
+
+  @ViewChildren('productItem') productItems!: QueryList<ProductComponent>;
 
   products: any[] = [
     {
@@ -127,6 +138,10 @@ export class ProductListComponent {
       } else {
         alert('You can compare maximum 3 products at once');
       }
+    }
+
+    if (this.compareButton) {
+      this.compareButton.nativeElement.textContent = `Compare Selected (${this.productsToCompare.length})`;
     }
   }
 

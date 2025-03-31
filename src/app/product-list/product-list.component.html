@@ -10,6 +10,7 @@
   style="margin: 15px 0; text-align: center"
 >
   <button
+    #compareButton
     [disabled]="productsToCompare.length < 2"
     (click)="startComparison()"
     style="
@@ -143,6 +144,7 @@
 
 <div class="productList flexbox">
   <app-product
+    #productItem
     *ngFor="let prod of filteredProducts"
     [product]="prod"
     [isInCompareList]="isProductInCompareList(prod)"
