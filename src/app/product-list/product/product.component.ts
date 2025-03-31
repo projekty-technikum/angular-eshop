@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product',
@@ -10,6 +10,10 @@ import { Component, Input } from '@angular/core';
 export class ProductComponent {
   @Input()
   product: any;
+  @Input()
+  isInCompareList: boolean = false;
+  @Output()
+  addToCompare = new EventEmitter<any>();
   showDetails: boolean = false;
 
   getDiscountedPrice(product: any) {
@@ -41,5 +45,12 @@ export class ProductComponent {
       event.stopPropagation();
     }
     this.showDetails = !this.showDetails;
+  }
+
+  compareProduct(event: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.addToCompare.emit(this.product);
   }
 }

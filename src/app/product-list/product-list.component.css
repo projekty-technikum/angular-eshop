@@ -4,3 +4,31 @@
   justify-content: center;
   align-items: center;
 }
+
+.selected-for-compare {
+  position: relative;
+  outline: 3px solid #007bff !important;
+}
+
+.selected-for-compare::before {
+  content: "✓";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.comparison-active {
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(0, 123, 255, 0.2);
+  transition: all 0.3s ease;
+}

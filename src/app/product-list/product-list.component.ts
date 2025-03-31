@@ -10,6 +10,10 @@ export class ProductListComponent {
   isHovered = false;
   selectedFilterOption: string = 'all';
   searchQuery: string = '';
+
+  productsToCompare: any[] = [];
+  compareMode: boolean = false;
+
   products: any[] = [
     {
       name: 'iPhone 15',
@@ -107,5 +111,51 @@ export class ProductListComponent {
 
   onSearchChange(query: string) {
     this.searchQuery = query;
+  }
+
+  handleCompareProduct(product: any) {
+    const index = this.productsToCompare.findIndex(
+      (p) => p.name === product.name
+    );
+
+    if (index !== -1) {
+      //Produkt już jest w liście, usuń go
+      this.productsToCompare.splice(index, 1);
+    } else {
+      if (this.productsToCompare.length < 3) {
+        this.productsToCompare.push(product);
+      } else {
+        alert('You can compare maximum 3 products at once');
+      }
+    }
+  }
+
+  isProductInCompareList(product: any): boolean {
+    return this.productsToCompare.some((p) => p.name === product.name);
+  }
+
+  startComparison() {
+    if (this.productsToCompare.length < 2) {
+      alert('Please select at least 2 products to compare');
+      return;
+    }
+
+    this.compareMode = true;
+  }
+
+  cancelComparison() {
+    this.productsToCompare = [];
+    this.compareMode = false;
+  }
+
+  getComparisonData() {
+    return this.productsToCompare.map((product) => ({
+      name: product.name,
+      price: product.price,
+      discountedPrice: product.price - (product.price * product.discount) / 100,
+      color: product.color,
+      inStock: product.inStock,
+      category: product.category,
+    }));
   }
 }
