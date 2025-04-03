@@ -21,8 +21,10 @@ export class ProductListComponent {
   productsToCompare: any[] = [];
   compareMode: boolean = false;
 
+  // Odniesienie do przycisku porównania
   @ViewChild('compareButton') compareButton!: ElementRef;
 
+  // Odniesienia do wszystkich komponentów produktu
   @ViewChildren('productItem') productItems!: QueryList<ProductComponent>;
 
   products: any[] = [
@@ -98,15 +100,18 @@ export class ProductListComponent {
     },
   ];
 
+  // Getter, który zwraca przefiltrowane produkty w oparciu o bieżący filtr kategorii i zapytanie wyszukiwania
   get filteredProducts() {
     let filtered = this.products;
 
+    // Zastosuj filtr kategorii, jeśli nie wyświetla wszystkich produktów
     if (this.selectedFilterOption !== 'all') {
       filtered = filtered.filter(
         (product) => product.category === this.selectedFilterOption
       );
     }
 
+    // Zastosuj filtr wyszukiwania, jeśli istnieje zapytanie
     if (this.searchQuery) {
       filtered = filtered.filter((product) =>
         product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
@@ -124,15 +129,17 @@ export class ProductListComponent {
     this.searchQuery = query;
   }
 
+  // Obsługuje dodawanie lub usuwanie produktu z listy porównawczej
   handleCompareProduct(product: any) {
     const index = this.productsToCompare.findIndex(
       (p) => p.name === product.name
     );
 
     if (index !== -1) {
-      //Produkt już jest w liście, usuń go
+      // Produkt jest już na liście, usuń go
       this.productsToCompare.splice(index, 1);
     } else {
+      // Dodaj produkt, jeśli lista porównawcza nie jest pełna (maks. 3)
       if (this.productsToCompare.length < 3) {
         this.productsToCompare.push(product);
       } else {
@@ -140,11 +147,13 @@ export class ProductListComponent {
       }
     }
 
+    // Zaktualizuj tekst przycisku porównania, aby wyświetlić liczbę wybranych produktów
     if (this.compareButton) {
       this.compareButton.nativeElement.textContent = `Compare Selected (${this.productsToCompare.length})`;
     }
   }
 
+  // Stosuje wizualne podświetlenie do produktów na liście porównawczej
   highlightComparedProduct() {
     if (this.productItems) {
       this.productItems.forEach((item) => {
@@ -153,9 +162,11 @@ export class ProductListComponent {
 
         if (element) {
           if (isInCompare) {
+            // Zastosuj style wyróżnienia do produktów na liście porównawczej
             element.style.transform = 'scale(1.05)';
             element.style.boxShadow = '0 0 15px rgba(0, 123, 255, 0.7)';
           } else {
+            // Zresetuj style dla produktów niebędących w porównaniu
             element.style.transform = 'scale(1)';
             element.style.boxShadow = 'none';
           }
@@ -164,16 +175,20 @@ export class ProductListComponent {
     }
   }
 
+  // Sprawdza, czy produkt znajduje się na liście porównawczej
   isProductInCompareList(product: any): boolean {
     return this.productsToCompare.some((p) => p.name === product.name);
   }
 
+  // Aktywuje tryb porównania, jeśli wybrano wystarczającą liczbę produktów
   startComparison() {
+    // Upewnij się, że do porównania wybrano co najmniej 2 produkty
     if (this.productsToCompare.length < 2) {
       alert('Please select at least 2 products to compare');
       return;
     }
 
+    // Aktywuj tryb porównywania i podświetl wybrane produkty
     this.compareMode = true;
     this.highlightComparedProduct();
   }
@@ -183,6 +198,8 @@ export class ProductListComponent {
     this.compareMode = false;
   }
 
+  // Przygotowuje dane produktu do wyświetlenia porównania
+  // Zwraca tablicę obiektów danych produktu z odpowiednimi właściwościami do porównania
   getComparisonData() {
     return this.productsToCompare.map((product) => ({
       name: product.name,

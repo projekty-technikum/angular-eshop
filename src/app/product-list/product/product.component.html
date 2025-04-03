@@ -1,3 +1,4 @@
+<!-- Główny kontener karty produktu z dynamiczną stylizacją -->
 <div
   #productContainer
   class="productContainer flexbox"
@@ -11,8 +12,10 @@
   (mouseenter)="product.isHovered = true"
   (mouseleave)="product.isHovered = false"
 >
+  <!-- Obraz produktu z obsługą kliknięcia w celu przełączenia widoku szczegółów -->
   <img [src]="product.pImage" [alt]="product.name" (click)="toggleDetails()" />
   <div class="productDetails flexbox-column">
+    <!-- Sekcja informacji o produkcie -->
     <p>{{ product.name }}</p>
     <p>Price: {{ "$" + product.price }}</p>
     <p>Color: {{ product.color }}</p>
