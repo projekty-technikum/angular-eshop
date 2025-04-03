@@ -145,6 +145,25 @@ export class ProductListComponent {
     }
   }
 
+  highlightComparedProduct() {
+    if (this.productItems) {
+      this.productItems.forEach((item) => {
+        const isInCompare = this.isProductInCompareList(item.product);
+        const element = item.productContainer?.nativeElement;
+
+        if (element) {
+          if (isInCompare) {
+            element.style.transform = 'scale(1.05)';
+            element.style.boxShadow = '0 0 15px rgba(0, 123, 255, 0.7)';
+          } else {
+            element.style.transform = 'scale(1)';
+            element.style.boxShadow = 'none';
+          }
+        }
+      });
+    }
+  }
+
   isProductInCompareList(product: any): boolean {
     return this.productsToCompare.some((p) => p.name === product.name);
   }
@@ -156,6 +175,7 @@ export class ProductListComponent {
     }
 
     this.compareMode = true;
+    this.highlightComparedProduct();
   }
 
   cancelComparison() {

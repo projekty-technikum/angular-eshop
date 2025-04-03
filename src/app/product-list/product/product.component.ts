@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   Output,
+  ViewChild,
 } from '@angular/core';
 
 @Component({
@@ -22,7 +23,7 @@ export class ProductComponent {
   addToCompare = new EventEmitter<any>();
   showDetails: boolean = false;
 
-  elementRef: ElementRef | undefined;
+  @ViewChild('productContainer') productContainer!: ElementRef;
 
   getDiscountedPrice(product: any) {
     return product.price - (product.price * product.discount) / 100;
