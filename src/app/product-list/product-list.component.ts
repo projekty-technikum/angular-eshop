@@ -181,6 +181,16 @@ export class ProductListComponent {
   cancelComparison() {
     this.productsToCompare = [];
     this.compareMode = false;
+
+    if (this.productItems) {
+      this.productItems.forEach((item) => {
+        const element = item.productContainer?.nativeElement;
+        if (element) {
+          element.style.transform = 'scale(1)';
+          element.style.boxShadow = 'none';
+        }
+      });
+    }
   }
 
   getComparisonData() {

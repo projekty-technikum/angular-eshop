@@ -1,3 +1,7 @@
+<ng-template #productName let-name="name">
+  <p>{{ name }}</p>
+</ng-template>
+
 <div
   #productContainer
   class="productContainer flexbox"
@@ -13,7 +17,10 @@
 >
   <img [src]="product.pImage" [alt]="product.name" (click)="toggleDetails()" />
   <div class="productDetails flexbox-column">
-    <p>{{ product.name }}</p>
+    <ng-container
+      *ngTemplateOutlet="productName; context: { name: product.name }"
+    ></ng-container>
+
     <p>Price: {{ "$" + product.price }}</p>
     <p>Color: {{ product.color }}</p>
     <p>
