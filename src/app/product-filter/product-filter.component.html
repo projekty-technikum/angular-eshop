@@ -1,6 +1,10 @@
+<!-- Główny kontener dla filtra produktów -->
 <div class="filter-container">
   <h3>Filter Products</h3>
+  <!-- Kontener dla przycisków kategorii -->
   <div class="radio-group">
+    <!-- Dynamiczne generowanie przycisku dla każdej kategorii w tablicy kategorii -->
+    <!-- Obsługa zdarzeń, która wywołuje metodę onFilterSelect po wybraniu przycisku -->
     <div class="radio-item" *ngFor="let category of categories">
       <input
         type="radio"
@@ -9,6 +13,7 @@
         [value]="category.id"
         (change)="onFilterSelect(category.id)"
       />
+      <!-- Etykieta dla każdego przycisku opcji pokazująca nazwę kategorii -->
       <label [for]="category.id">{{ category.name }}</label>
     </div>
   </div>
